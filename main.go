@@ -1,7 +1,7 @@
 //
 // Really simple API for Jenkins->Ansible tasks
 //
-// Pawel Grzesik, Engagehub 2018
+// Pawel Grzesik, 2018
 // pawel.grzesik@gmail.com
 //
 // [How it works]
