@@ -41,6 +41,26 @@ How to get full list of all tasks:
   $ curl http://10.0.0.24:8080/task | jq
 ```
 
+You can also use `jformat` to have json on the output
+```
+  $ ./nelProxy --server=127.0.0.1 --ssl=false --logs=./NelProxy.log --port=8080 --worker=true --inventory=PROD1 -jformat | jq
+{
+  "id": 6,
+  "inventory": "PROD1",
+  "command": {
+    "playbook": "foo.yml",
+    "user": "pawel",
+    "su": true,
+    "tags": {
+      "name": [
+        "sensu",
+        "users"
+      ]
+    }
+  }
+}
+```
+
 ## How to install it
 
 Since it's written in Go we do need to compile it
