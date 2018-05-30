@@ -72,7 +72,7 @@ var jobs []Task
 // default is 0
 var currentID int
 
-// menu foo
+// menu struct for Args
 var menu ArgStruct
 
 // ArgStruct for a nice menu cmd
