@@ -1,0 +1,45 @@
+2018/05/30 10:55:27 Status code: 404
+127.0.0.1 - - [30/May/2018:10:57:32 +0100] "GET / HTTP/1.1" 404 19 "" "curl/7.54.0"
+127.0.0.1 - - [30/May/2018:10:57:51 +0100] "GET /task HTTP/1.1" 404 10 "" "Go-http-client/1.1"
+2018/05/30 10:57:51 Status code: 404
+2018/05/30 10:57:59 1 PROD1 foo.yml true {[sensu users]} pawel
+::1 - - [30/May/2018:10:57:59 +0100] "POST /task HTTP/1.1" 200 22 "" "curl/7.54.0"
+127.0.0.1 - - [30/May/2018:10:58:06 +0100] "GET /task HTTP/1.1" 200 123 "" "Go-http-client/1.1"
+2018/05/30 10:58:06 No tasks for the current production
+127.0.0.1 - - [30/May/2018:10:58:23 +0100] "GET /task HTTP/1.1" 200 123 "" "Go-http-client/1.1"
+2018/05/30 10:58:28 Error when executing Worker Delete http://127.0.0.1:80808080/task/1: dial tcp: address 80808080: invalid port
+127.0.0.1 - - [30/May/2018:11:00:34 +0100] "GET /task HTTP/1.1" 200 123 "" "Go-http-client/1.1"
+2018/05/30 11:00:39 Deleted task 1
+127.0.0.1 - - [30/May/2018:11:00:39 +0100] "DELETE /task/1 HTTP/1.1" 200 22 "" "Go-http-client/1.1"
+127.0.0.1 - - [30/May/2018:11:03:06 +0100] "GET /task HTTP/1.1" 404 10 "" "Go-http-client/1.1"
+2018/05/30 11:03:06 Status code: 404
+127.0.0.1 - - [30/May/2018:11:03:49 +0100] "GET /task HTTP/1.1" 404 10 "" "Go-http-client/1.1"
+2018/05/30 11:03:49 Status code: 404
+2018/05/30 11:03:57 2 PROD1 foo.yml true {[sensu users]} pawel
+::1 - - [30/May/2018:11:03:57 +0100] "POST /task HTTP/1.1" 200 22 "" "curl/7.54.0"
+127.0.0.1 - - [30/May/2018:11:03:59 +0100] "GET /task HTTP/1.1" 200 123 "" "Go-http-client/1.1"
+2018/05/30 11:04:04 Deleted task 2
+127.0.0.1 - - [30/May/2018:11:04:04 +0100] "DELETE /task/2 HTTP/1.1" 200 22 "" "Go-http-client/1.1"
+2018/05/30 11:05:56 3 PROD1 foo.yml true {[sensu users]} pawel
+::1 - - [30/May/2018:11:05:56 +0100] "POST /task HTTP/1.1" 200 22 "" "curl/7.54.0"
+127.0.0.1 - - [30/May/2018:11:06:00 +0100] "GET /task HTTP/1.1" 200 123 "" "Go-http-client/1.1"
+2018/05/30 11:06:00 Deleted task 3
+127.0.0.1 - - [30/May/2018:11:06:00 +0100] "DELETE /task/3 HTTP/1.1" 200 22 "" "Go-http-client/1.1"
+2018/05/30 11:06:55 4 PROD1 foo.yml true {[sensu users]} pawel
+::1 - - [30/May/2018:11:06:55 +0100] "POST /task HTTP/1.1" 200 22 "" "curl/7.54.0"
+127.0.0.1 - - [30/May/2018:11:06:57 +0100] "GET /task HTTP/1.1" 200 123 "" "Go-http-client/1.1"
+2018/05/30 11:06:57 Deleted task 4
+127.0.0.1 - - [30/May/2018:11:06:57 +0100] "DELETE /task/4 HTTP/1.1" 200 22 "" "Go-http-client/1.1"
+2018/05/30 11:06:57 response Status :  200 OK
+2018/05/30 11:07:00 5 PROD1 foo.yml true {[sensu users]} pawel
+::1 - - [30/May/2018:11:07:00 +0100] "POST /task HTTP/1.1" 200 22 "" "curl/7.54.0"
+127.0.0.1 - - [30/May/2018:11:07:03 +0100] "GET /task HTTP/1.1" 200 123 "" "Go-http-client/1.1"
+2018/05/30 11:07:03 Deleted task 5
+127.0.0.1 - - [30/May/2018:11:07:03 +0100] "DELETE /task/5 HTTP/1.1" 200 22 "" "Go-http-client/1.1"
+2018/05/30 11:07:03 response Status :  200 OK
+2018/05/30 11:08:28 6 PROD1 foo.yml true {[sensu users]} pawel
+::1 - - [30/May/2018:11:08:28 +0100] "POST /task HTTP/1.1" 200 22 "" "curl/7.54.0"
+127.0.0.1 - - [30/May/2018:11:08:30 +0100] "GET /task HTTP/1.1" 200 123 "" "Go-http-client/1.1"
+2018/05/30 11:08:30 Deleted task 6
+127.0.0.1 - - [30/May/2018:11:08:30 +0100] "DELETE /task/6 HTTP/1.1" 200 22 "" "Go-http-client/1.1"
+2018/05/30 11:08:30 response Status :  200 OK

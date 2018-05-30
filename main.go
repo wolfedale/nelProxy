@@ -85,6 +85,7 @@ type ArgStruct struct {
 	Port      string
 	Worker    bool
 	Inventory string
+	Jformat   bool
 }
 
 func flagOptions() ArgStruct {
@@ -112,6 +113,9 @@ func flagOptions() ArgStruct {
 	// Production name or Inventory
 	inventory := flag.String("inventory", "", "production name or inventory name")
 
+	// JSON format on the output
+	jformat := flag.Bool("jformat", false, "json format on the output")
+
 	// parse all arg commands
 	flag.Parse()
 
@@ -124,7 +128,8 @@ func flagOptions() ArgStruct {
 		*server,
 		*port,
 		*worker,
-		*inventory}
+		*inventory,
+		*jformat}
 }
 
 func main() {
@@ -166,7 +171,7 @@ func main() {
 		// executing worker
 		err = Worker()
 		if err != nil {
-			fmt.Println("Error when executing Worker", err)
+			log.Println("Error when executing Worker", err)
 			os.Exit(2)
 		}
 
@@ -196,7 +201,7 @@ func Worker() error {
 
 	response, err := http.Get("http://" + menu.Server + ":" + menu.Port + "/task")
 	if err != nil {
-		fmt.Printf("The HTTP request failed with error %s\n", err)
+		log.Printf("The HTTP request failed with error %s\n", err)
 		return err
 	}
 
@@ -218,7 +223,7 @@ func Worker() error {
 	// parsing JSON
 	err = json.Unmarshal(data, &jobs)
 	if err != nil {
-		fmt.Println("There was an error:", err)
+		log.Println("There was an error:", err)
 	}
 
 	// Execute Ansible
@@ -244,7 +249,11 @@ func Ansible() error {
 
 			// 1. Execute
 			// it might be good to add error check here
-			AnsibleExec(v, tags)
+			if menu.Jformat {
+				AnsibleExecJSON(v, tags)
+			} else {
+				AnsibleExec(v, tags)
+			}
 
 			// 2. Drop
 			err := AnsibleDrop(v, tags)
@@ -272,7 +281,7 @@ func setTags(v Task) string {
 	return tags
 }
 
-// AnsibleExec foo
+// AnsibleExec return text format
 func AnsibleExec(v Task, t string) {
 	// test with time sleep
 	time.Sleep(5 * time.Second)
@@ -281,6 +290,16 @@ func AnsibleExec(v Task, t string) {
 	} else {
 		fmt.Println("ansible-playbook -i inventories/"+v.Inventory+"/hosts", v.Command.Playbook, "-u", v.Command.User, "--tags", t)
 	}
+}
+
+// AnsibleExecJSON return json format
+func AnsibleExecJSON(v Task, t string) {
+	b, err := json.Marshal(v)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(string(b))
 }
 
 // AnsibleDrop foo
@@ -292,7 +311,7 @@ func AnsibleDrop(v Task, t string) error {
 	myID := intToString(v.ID)
 
 	// Create request
-	req, err := http.NewRequest("DELETE", "http://"+menu.Server+":"+menu.Port+"8080/task/"+myID, nil)
+	req, err := http.NewRequest("DELETE", "http://"+menu.Server+":"+menu.Port+"/task/"+myID, nil)
 	if err != nil {
 		fmt.Println(err)
 		return err
@@ -306,7 +325,7 @@ func AnsibleDrop(v Task, t string) error {
 	defer resp.Body.Close()
 
 	// Display Results
-	fmt.Println("response Status : ", resp.Status)
+	log.Println("response Status : ", resp.Status)
 	if resp.StatusCode != 200 {
 		return err
 	}
