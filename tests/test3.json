@@ -1,9 +1,9 @@
 {
-	"inventory":"EH2",
+	"inventory":"PROD3",
 	"command":
 	{
-		"playbook":"engagehub.yml",
-		"user":"admins99",
+		"playbook":"sensu.yml",
+		"user":"admins",
 		"su":true,
 		"tags":
 		{

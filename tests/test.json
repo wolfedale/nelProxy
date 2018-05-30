@@ -1,9 +1,9 @@
 {
-	"inventory":"EH2",
+	"inventory":"PROD1",
 	"command":
 	{
 		"playbook":"foo.yml",
-		"user":"admins99",
+		"user":"pawel",
 		"su":true,
 		"tags":
 		{
