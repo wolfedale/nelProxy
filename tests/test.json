@@ -1,0 +1,13 @@
+{
+	"inventory":"EH2",
+	"command":
+	{
+		"playbook":"foo.yml",
+		"user":"admins99",
+		"su":true,
+		"tags":
+		{
+			"name":["sensu", "users"]
+		}
+	}
+}
